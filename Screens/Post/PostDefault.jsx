@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { Octicons } from "@expo/vector-icons";
 import { fbStore } from "../../firebase/config";
-import { collection, query, doc, onSnapshot } from "firebase/firestore";
+import { query, onSnapshot } from "firebase/firestore";
 
 export const Posts = ({ route, navigation }) => {
   const [posts, setPosts] = useState([]);

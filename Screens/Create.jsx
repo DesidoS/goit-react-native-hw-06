@@ -4,12 +4,10 @@ import { useSelector } from "react-redux";
 import {
   Text,
   View,
-  Keyboard,
   TextInput,
   StyleSheet,
   TouchableOpacity,
   ImageBackground,
-  TouchableWithoutFeedback,
   KeyboardAvoidingView,
 } from "react-native";
 import { Camera } from "expo-camera";
@@ -41,6 +39,8 @@ export const Create = ({ navigation }) => {
   const takePicture = async () => {
     if (cameraRef) {
       const { uri } = await cameraRef.takePictureAsync();
+
+      await MediaLibrary.createAssetAsync(uri);
       setPicture(uri);
       let location = await Location.getCurrentPositionAsync({});
       const coords = {
@@ -108,7 +108,10 @@ export const Create = ({ navigation }) => {
     return <Text>No access to camera</Text>;
   }
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+    <KeyboardAvoidingView
+      behavior={Platform.OS == "ios" ? "padding" : "height"}
+      style={styles.container}
+    >
       <View style={styles.container}>
         <Camera
           style={styles.camera}
@@ -168,6 +171,7 @@ export const Create = ({ navigation }) => {
                     placeholder="Location"
                   />
                 </View>
+
                 <TouchableOpacity
                   style={styles.flipContainer}
                   onPress={sandPhoto}
@@ -181,7 +185,7 @@ export const Create = ({ navigation }) => {
           </View>
         </Camera>
       </View>
-    </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
   );
 };
 
