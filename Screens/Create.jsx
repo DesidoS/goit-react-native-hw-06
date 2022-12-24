@@ -40,7 +40,7 @@ export const Create = ({ navigation }) => {
     if (cameraRef) {
       const { uri } = await cameraRef.takePictureAsync();
 
-      await MediaLibrary.createAssetAsync(uri);
+      // await MediaLibrary.createAssetAsync(uri);
       setPicture(uri);
       let location = await Location.getCurrentPositionAsync({});
       const coords = {

@@ -8,6 +8,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
+import { Alert } from "react-native";
 
 export const authSignUpUser =
   ({ email, password, userName }) =>
@@ -30,7 +31,9 @@ export const authSignUpUser =
         })
       );
     } catch (error) {
-      console.log("message", error.message);
+      Alert.alert("Error", error.message);
+
+      console.log("message", error);
     }
   };
 
@@ -55,7 +58,9 @@ export const authSignInUser =
         })
       );
     } catch (error) {
-      console.log("message", error.message);
+      Alert.alert("Error", error.message);
+
+      console.log("message", error);
     }
   };
 export const authSignOutUser = () => async (dispatch) => {
@@ -66,6 +71,8 @@ export const authSignOutUser = () => async (dispatch) => {
 
     dispatch(authSlice.actions.authSignOut());
   } catch (error) {
+    Alert.alert("Error", error.message);
+
     console.log("authSignUpUser ~ error", error);
   }
 };
@@ -91,6 +98,8 @@ export const authStateChangeUser = () => async (dispatch) => {
   try {
     await signOut(auth);
   } catch (error) {
+    Alert.alert("Error", error.message);
+
     console.log("authSignUpUser ~ error", error);
   }
 };

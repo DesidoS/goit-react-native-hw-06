@@ -34,7 +34,6 @@ export const Register = ({ navigation, route }) => {
     setState((prevState) => ({ ...prevState, password: value }));
 
   const onRegister = () => {
-    console.log("onRegister ~ onRegister");
     Keyboard.dismiss();
     dispatch(authSignUpUser(state));
     setState(initialState);
