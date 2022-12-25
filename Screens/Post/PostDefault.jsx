@@ -35,7 +35,7 @@ export const Posts = ({ route, navigation }) => {
   if (posts.length === 0)
     return (
       <View style={styles.container}>
-        <Text>Welcomeee!</Text>
+        <Text>Welcome!</Text>
       </View>
     );
 
