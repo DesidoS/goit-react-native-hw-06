@@ -11,7 +11,7 @@ import { Octicons } from "@expo/vector-icons";
 import { fbStore } from "../../firebase/config";
 import { collection, query, onSnapshot } from "firebase/firestore";
 
-export const Posts = ({ route, navigation }) => {
+export const Posts = ({ navigation }) => {
   const [posts, setPosts] = useState([]);
 
   const loadPosts = async () => {
@@ -32,12 +32,13 @@ export const Posts = ({ route, navigation }) => {
     loadPosts();
   }, []);
 
-  if (posts.length === 0)
+  if (posts.length === 0) {
     return (
       <View style={styles.container}>
         <Text>Welcome!</Text>
       </View>
     );
+  }
 
   return (
     <View>
@@ -108,7 +109,7 @@ const styles = StyleSheet.create({
   },
   title: {
     flex: 1,
-    justifyContent: "start",
+    // justifyContent: "start",
     width: "80%",
     margin: 10,
     fontSize: 24,
